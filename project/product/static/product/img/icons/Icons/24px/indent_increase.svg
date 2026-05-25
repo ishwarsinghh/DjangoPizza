@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icons/24px/indent_increase</title>
+    <desc>Created with Sketch.</desc>
+    <g id="1.-Intro" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03" transform="translate(-979.000000, -950.000000)">
+            <g id="Icons/24px/indent_increase" transform="translate(979.000000, 950.000000)">
+                <path d="M11,17 L21,17 L21,15 L11,15 L11,17 Z M7,12 L3,16 L3,8 L7,12 Z M3,21 L21,21 L21,19 L3,19 L3,21 Z M3,3 L3,5 L21,5 L21,3 L3,3 Z M11,9 L21,9 L21,7 L11,7 L11,9 Z M11,13 L21,13 L21,11 L11,11 L11,13 Z" id="Shape" fill="#525A65" fill-rule="evenodd"></path>
+                <path d="M0.00499895812,0.005 L0,23.995 L23.995,24 L24,0.005 L0.00499895812,0.005 Z" id="Path" stroke-opacity="0.01" stroke="#000000" stroke-width="0.01"></path>
+            </g>
+        </g>
+    </g>
+</svg>

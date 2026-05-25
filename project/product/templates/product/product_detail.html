@@ -1,0 +1,70 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block content%}
+
+ <div class="container">
+        <div class="pizza_breadcrumb">
+            <a href="{%url 'home'%}"><i class="fa fa-home"></i> Home</a> / <span>Single product</span>
+        </div>
+
+        <section class="shop_title">
+            <div class="piz_title">
+                <div class="small_title"><h3>best choice!</h3></div>
+
+                <div class="big_title"><h1 class="shop_big_title">{{product_detail.name}}</h1><img src="{% static 'product/img/title_icon.png'%}"></div>
+
+            </div>
+            <div class="title_devider">
+                <p class="line"></p>
+            </div>
+
+        </section>
+        <section class="products top_margin_60-30">
+
+            <div class="row big-bottom">
+                <div class="col-md-12">
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="big_pizza">
+                            <img src="{{product_detail.image.url}}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content_description">
+                            <div class="small_description">
+                                <p>{{product_detail.description}}</p>
+                            </div>
+                            <div class="price">
+                                <h2>₹{{product_detail.price}}</h2>
+                                <ul>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star"></i></li>
+                                    <li><i class="fa fa-star-half-o"></i></li>
+                                    <li class="gray"><i class="fa fa-star-o"></i></li>
+                                    <li class="gray"><i class="fa fa-star-o"></i></li>
+                                </ul>
+                            </div>
+                           
+
+                            <div class="shop_buttons">
+                                <a href="{% url 'add_cart' product_detail.id %}">
+                                <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                            </a>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+  
+
+
+
+{% endblock %}

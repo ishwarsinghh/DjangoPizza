@@ -1,0 +1,52 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="container">
+        <div class="pizza_breadcrumb">
+            <a href="index.html"><i class="fa fa-home"></i> Home</a> / <span>Log in</span>
+        </div>
+
+        <section class="login">
+            <div class="piz_title">
+                <div class="small_title"><h3>Log In / registration</h3></div>
+
+                <div class="big_title"><h1 class="log_big_title">New customer</h1><img src="https://via.placeholder.com/79x64"></div>
+
+            </div>
+            <div class="title_devider">
+                <p class="line"></p>
+            </div>
+            <div class="under_title">
+                <p>When you create an account, you can see your orders history</p>
+            </div>
+        </section>
+
+
+        <section class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+    
+                        <form class="Registration form" method='POST'>
+                            {% csrf_token%}
+                            <p>{{form|crispy}}</p>
+                            <button type="submit" name="button" class="btn betn-primary">Login</button>
+                        </form>
+                    </div>
+     
+                    <div class="big_title">
+                        <h1 class="shop_big_title">
+                            Create new account
+                        </h1>
+                    </div>
+                    <div class="col-md-3 text-right">
+                    <a href="{% url 'signup' %}"><button type="button" class="btn btn-outline-primary-grey grey">Register</button></a>
+                </div>
+    
+                    
+                </div>
+            </div>
+        </section>
+    </div>
+{%endblock%}

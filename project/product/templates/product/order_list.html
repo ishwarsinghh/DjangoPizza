@@ -1,0 +1,94 @@
+{% extends 'product/base.html' %} {% load static %} {% block content%}
+<p></p>
+<br /><br /><br /><br /><br /><br /><br /><br />
+<div class="container">
+  <section class="we_are dash_height">
+    <div class="piz_title">
+      <div class="small_title"><h3>dashboard</h3></div>
+
+      <div class="big_title">
+        <h1 class="dash_big_title">my account</h1>
+        <img src="{% static 'product/img/title_icon.png' %}" />
+      </div>
+    </div>
+  </section>
+  <section class="dashboard">
+    <div class="row">
+      <div class="col-md-3">
+        <h3 class="title">My Account</h3>
+        <ul>
+          <li class="active">
+            <a href="#"><i class="far fa-newspaper"></i> Dashboard </a>
+          </li>
+          <li>
+            <a href="{% url 'my_dashboard' %}"
+              ><i class="far fa-file-alt"></i> My Orders
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'signout' %}"
+              ><i class="far fa-share-square"></i> Log Out</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <div class="info_box">
+          <p>
+            Hello
+            <span class="author">{{request.user.first_name}}</span>
+          </p>
+          <p>From your account dashboard you can view your recent orders</p>
+
+          <br />
+          {% if order_details %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in order_details %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created|date:"d M Y" }}</td>
+                <td>Rs.{{ order.total }}</td>
+                <td class="status_td">
+                  {% if order.status == 'Pending' %}
+                  <a href="{% url 'status_complete' order.id %}">
+                    <span class="badge badge-warning">{{ order.status }}</span>
+                  </a>
+                  {% else %}
+                  <span class="badge badge-success">{{ order.status }}</span>
+                  {% endif %}
+                </td>
+                <td class="status_td">
+                  <a href="{% url 'order_detail' order.id %}"
+                    ><span class="badge badge-warning">View Order</span></a
+                  >
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>
+            You have not placed any orders yet. <br /><br />
+            <a href="{% url 'home' %}" class="btn btn-secondary"
+              >Continue shopping</a
+            >
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<p></p>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+{% endblock%}

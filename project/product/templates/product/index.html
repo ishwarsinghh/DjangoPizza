@@ -1,0 +1,399 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block content%}
+    <div class="container">
+        <div class="pizza_breadcrumb">
+            <a href="index.html"><i class="fa fa-home"></i> Home</a> / <span>Online Shop</span>
+        </div>
+
+        <section class="shop_title">
+            <div class="piz_title">
+                <div class="small_title"><h3>hello world!</h3></div>
+
+                <div class="big_title"><h1 class="shop_big_title">buy pizza online</h1><img src="{% static 'product/img/title_icon.png'%}"></div>
+
+            </div>
+            <div class="title_devider">
+                <p class="line"></p>
+            </div>
+            <div class="under_title">
+            <p>World's best pizza is now available in your City!!!</p>
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row bottom">
+                        <div class="filter_box bottom-15">
+                            <div class="left">
+                                <div class="buttons_filter">
+                                   <a href="{% url 'home'%}"> <button type="button" class="btn btn-outline-primary">Show All</button></a>
+                                    {% for category in categories %}
+                                    <a href="{% url 'product_by_category' category.slug %}">
+                                    <button type="button" class="btn btn-outline-primary"><img src="{% static 'product/img/icons/potoli.png'%}">{{category.name}}</button></a>
+                                    {% endfor%}
+                                </div>
+                            </div>
+                            <div class="right full">
+                                <div class="tabs2-wrapper">
+                                    <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+                                        <li class="active"><a href="#tabs2-1"><i class="fa fa-th"></i></a></li>
+                                        <li><a href="#tabs2-2"><i class="fa fa-list"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="second-tab-group" class="tabgroup">
+                <div id="tabs2-1">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="row full_shop">
+                            {% for product in products %}
+                            <div class="col-md-4">
+                                <div class="product_block m-right">
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <div class="pizza_full"><img src="{{product.image.url}}" class="img-fluid"></div>
+                                        <h3>{{product.name}}</h3>
+                                        <p class="description_full">{{product.short_description}}</p>
+                                    </a>
+                                    {% comment %} <div class="size_devider"><span>Pick Size</span></div>
+                                    <div class="size_checkboxes">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                            <label class="form-check-label" for="inlineRadio1"> 22cm / $19.90</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                            <label class="form-check-label" for="inlineRadio2"> 29cm / $26.99</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                            <label class="form-check-label" for="inlineRadio3"> 35cm / $29.99</label>
+                                        </div>
+                                    </div> {% endcomment %}
+                                    <a href="{% url 'product_detail' product.id %}">
+                                    <button type="button" class="btn btn-outline-primary full_but"><i class="fa fa-cart-plus"></i> add to cart</button></a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <ur class="pagination right">
+                            {% if products.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1"><i class="fa fa-angle-double-left"></i></a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{products.previous_page_number}}">{{products.previous_page_number}}</a>
+                            </li>
+                            {% endif%}
+                            <li class="page-item">
+                                <a class="page-link active" href="#">{{products.number}}</a>
+                            </li>
+
+                            {% if products.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{products.next_page_number}}">{{products.next_page_number}}</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{products.paginator.num_pages}}"><i class="fa fa-angle-double-right"></i></a>
+                            </li>
+                            {% endif %}
+                        </ur>
+                    </div>
+                    </div>
+                </div>
+
+                <div id="tabs2-2">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <div class="row bottom">
+                               <div class="product_block_wide_l">
+                                   <div class="pizza_wide_full"><img src="https://via.placeholder.com/400x400" class="img-fluid"></div>
+                                   <div class="content_block full_padding">
+                                       <span class="title">pizza margarita <img class="rotate" src="{% static 'product/img/icons/paper.png'%}"></span>
+                                       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante. Fusce posuere urna eros. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante.</p>
+                                       <div class="size_devider_full"><span>Select Crust</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo1" value="original">
+                                               <label class="form-check-label" for="CheckBoxo1"> Original Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo2" value="thick">
+                                               <label class="form-check-label" for="CheckBoxo2"> Thick Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo3" value="thin">
+                                               <label class="form-check-label" for="CheckBoxo3"> Thin Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo4" value="double">
+                                               <label class="form-check-label" for="CheckBoxo4"> Double Crust</label>
+                                           </div>
+                                       </div>
+
+                                       <div class="size_devider_full"><span class="pick_sizes">Pick Size</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize22" value="original">
+                                               <label class="form-check-label" for="CheckBoxoSize22"> 22cm / $19.90</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize29" value="thick">
+                                               <label class="form-check-label" for="CheckBoxoSize29"> 29cm / $27.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize35" value="thin">
+                                               <label class="form-check-label" for="CheckBoxoSize35"> 35cm / $34.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize45" value="double">
+                                               <label class="form-check-label" for="CheckBoxoSize45"> 45cm / $47.90</label>
+                                           </div>
+                                       </div>
+
+                                       <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row bottom">
+                               <div class="product_block_wide_l">
+                                   <div class="pizza_wide_full"><img src="https://via.placeholder.com/400x400" class="img-fluid"></div>
+                                   <div class="content_block full_padding">
+                                       <span class="title">pizza peperroni <img class="rotate" src="{% static 'product/img/icons/paper.png'%}"></span>
+                                       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante. Fusce posuere urna eros. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante.</p>
+                                       <div class="size_devider_full"><span>Select Crust</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo5" value="original">
+                                               <label class="form-check-label" for="CheckBoxo5"> Original Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo6" value="thick">
+                                               <label class="form-check-label" for="CheckBoxo6"> Thick Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo7" value="thin">
+                                               <label class="form-check-label" for="CheckBoxo7"> Thin Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo8" value="double">
+                                               <label class="form-check-label" for="CheckBoxo8"> Double Crust</label>
+                                           </div>
+                                       </div>
+
+                                       <div class="size_devider_full"><span class="pick_sizes">Pick Size</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize22_1" value="original">
+                                               <label class="form-check-label" for="CheckBoxoSize22_1"> 22cm / $19.90</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize29_1" value="thick">
+                                               <label class="form-check-label" for="CheckBoxoSize29_1"> 29cm / $27.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize35_1" value="thin">
+                                               <label class="form-check-label" for="CheckBoxoSize35_1"> 35cm / $34.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize45_1" value="double">
+                                               <label class="form-check-label" for="CheckBoxoSize45_1"> 45cm / $47.90</label>
+                                           </div>
+                                       </div>
+
+                                       <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row bottom">
+                               <div class="product_block_wide_l">
+                                   <div class="pizza_wide_full"><img src="https://via.placeholder.com/400x400" class="img-fluid"></div>
+                                   <div class="content_block full_padding">
+                                       <span class="title">pizza italiano <img class="vegan" src="{% static 'product/img/icons/potoli.png'%}"></span>
+                                       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante. Fusce posuere urna eros. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante.</p>
+                                       <div class="size_devider_full"><span>Select Crust</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo9" value="original">
+                                               <label class="form-check-label" for="CheckBoxo9"> Original Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo10" value="thick">
+                                               <label class="form-check-label" for="CheckBoxo10"> Thick Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo11" value="thin">
+                                               <label class="form-check-label" for="CheckBoxo11"> Thin Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo12" value="double">
+                                               <label class="form-check-label" for="CheckBoxo12"> Double Crust</label>
+                                           </div>
+                                       </div>
+
+                                       <div class="size_devider_full"><span class="pick_sizes">Pick Size</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize22_2" value="original">
+                                               <label class="form-check-label" for="CheckBoxoSize22_2"> 22cm / $19.90</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize29_2" value="thick">
+                                               <label class="form-check-label" for="CheckBoxoSize29_2"> 29cm / $27.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize35_2" value="thin">
+                                               <label class="form-check-label" for="CheckBoxoSize35_2"> 35cm / $34.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize45_2" value="double">
+                                               <label class="form-check-label" for="CheckBoxoSize45_2"> 45cm / $47.90</label>
+                                           </div>
+                                       </div>
+
+                                       <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row bottom">
+                               <div class="product_block_wide_l">
+                                   <div class="pizza_wide_full"><img src="https://via.placeholder.com/400x400" class="img-fluid"></div>
+                                   <div class="content_block full_padding">
+                                       <span class="title">pizza vinchenzio <img class="rotate" src="{% static 'product/img/icons/paper.png'%}"></span>
+                                       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante. Fusce posuere urna eros. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante.</p>
+                                       <div class="size_devider_full"><span>Select Crust</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo13" value="original">
+                                               <label class="form-check-label" for="CheckBoxo13"> Original Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo14" value="thick">
+                                               <label class="form-check-label" for="CheckBoxo14"> Thick Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo15" value="thin">
+                                               <label class="form-check-label" for="CheckBoxo15"> Thin Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo16" value="double">
+                                               <label class="form-check-label" for="CheckBoxo16"> Double Crust</label>
+                                           </div>
+                                       </div>
+
+                                       <div class="size_devider_full"><span class="pick_sizes">Pick Size</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize22_3" value="original">
+                                               <label class="form-check-label" for="CheckBoxoSize22_3"> 22cm / $19.90</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize29_3" value="thick">
+                                               <label class="form-check-label" for="CheckBoxoSize29_3"> 29cm / $27.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize35_3" value="thin">
+                                               <label class="form-check-label" for="CheckBoxoSize35_3"> 35cm / $34.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize45_3" value="double">
+                                               <label class="form-check-label" for="CheckBoxoSize45_3"> 45cm / $47.90</label>
+                                           </div>
+                                       </div>
+
+                                       <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row bottom">
+                               <div class="product_block_wide_l">
+                                   <div class="pizza_wide_full"><img src="https://via.placeholder.com/400x400" class="img-fluid"></div>
+                                   <div class="content_block full_padding">
+                                       <span class="title">pizza lugano <img class="vegan" src="{% static 'product/img/icons/potoli.png'%}"></span>
+                                       <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante. Fusce posuere urna eros. Vivamus sit amet feugiat ante. Mauris pulvinar molestie ante.</p>
+                                       <div class="size_devider_full"><span>Select Crust</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo17" value="original">
+                                               <label class="form-check-label" for="CheckBoxo17"> Original Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo18" value="thick">
+                                               <label class="form-check-label" for="CheckBoxo18"> Thick Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo19" value="thin">
+                                               <label class="form-check-label" for="CheckBoxo19"> Thin Crust</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input" type="checkbox" id="CheckBoxo20" value="double">
+                                               <label class="form-check-label" for="CheckBoxo20"> Double Crust</label>
+                                           </div>
+                                       </div>
+
+                                       <div class="size_devider_full"><span class="pick_sizes">Pick Size</span> </div>
+                                       <div class="size_checkboxes">
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize22_4" value="original">
+                                               <label class="form-check-label" for="CheckBoxoSize22_4"> 22cm / $19.90</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize29_4" value="thick">
+                                               <label class="form-check-label" for="CheckBoxoSize29_4"> 29cm / $27.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize35_4" value="thin">
+                                               <label class="form-check-label" for="CheckBoxoSize35_4"> 35cm / $34.99</label>
+                                           </div>
+                                           <div class="form-check form-check-inline">
+                                               <input class="form-check-input-sizes" type="checkbox" id="CheckBoxoSize45_4" value="double">
+                                               <label class="form-check-label" for="CheckBoxoSize45_4"> 45cm / $47.90</label>
+                                           </div>
+                                       </div>
+
+                                       <button type="button" class="btn btn-outline-primary"><i class="fa fa-cart-plus"></i> add to cart</button>
+                                   </div>
+                               </div>
+                           </div>
+                           <ur class="pagination right">
+                               <li class="page-item">
+                                   <a class="page-link" href="#"><i class="fa fa-angle-double-left"></i></a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link active" href="#">1</a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link" href="#">2</a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link" href="#">3</a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link" href="#">...</a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link" href="#">7</a>
+                               </li>
+                               <li class="page-item">
+                                   <a class="page-link" href="#"><i class="fa fa-angle-double-right"></i></a>
+                               </li>
+                           </ur>
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock%}
+    <!-------------------- FOOTER  -------------------------------------->
+    

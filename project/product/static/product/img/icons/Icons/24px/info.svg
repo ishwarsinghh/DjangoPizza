@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icons/24px/info</title>
+    <desc>Created with Sketch.</desc>
+    <g id="1.-Intro" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03" transform="translate(-1076.000000, -810.000000)">
+            <g id="Icons/24px/info" transform="translate(1076.000000, 810.000000)">
+                <path d="M21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 C16.9705627,21 21,16.9705627 21,12 Z M1,12 C1,5.92486775 5.92486775,1 12,1 C18.0751322,1 23,5.92486775 23,12 C23,18.0751322 18.0751322,23 12,23 C5.92486775,23 1,18.0751322 1,12 Z M11,12 L11,17 L12.9999999,17 L12.9999999,10 L8.99999992,10 L8.99999992,12 L11,12 Z M12.9999999,9.00000002 L12.9999999,7 L11,7 L11,9.00000002 L12.9999999,9.00000002 Z" id="Oval" fill="#525A65" fill-rule="evenodd"></path>
+                <path d="M0.00499895812,0.005 L0,23.995 L23.995,24 L24,0.005 L0.00499895812,0.005 Z" id="Path" stroke-opacity="0.01" stroke="#000000" stroke-width="0.01"></path>
+            </g>
+        </g>
+    </g>
+</svg>

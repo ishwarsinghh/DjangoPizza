@@ -1,0 +1,135 @@
+{% extends 'product/base.html' %}
+{% load static %}
+{% block content%}
+<div class="container">
+        <div class="pizza_breadcrumb">
+            <a href="index.html"><i class="fa fa-home"></i> Home</a> / <span>Shopping cart</span>
+        </div>
+
+        <section class="shop_title">
+            <div class="piz_title">
+                <div class="small_title"><h3>best choice!</h3></div>
+
+                <div class="big_title"><h1 class="shop_big_title">shopping cart</h1><img src="{%static 'product/img/title_icon.png'%}"></div>
+
+            </div>
+            <div class="title_devider">
+                <p class="line"></p>
+            </div>
+
+
+        </section>
+        <section class="shopping_cart_box">
+            {%if cart_items%}
+            <div class="row top_tab">
+                <div class="col-md-5">
+                    <div class="name_title float-left">
+                        product name
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="price_title">
+                        product price
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="quantity_title">
+                        quantity
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="total_title">
+                        total
+                    </div>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+            {% for cart_item in cart_items %}
+            <div class="row flex-tab">
+                <div class="col-md-5">
+                    <div class="cart_item">
+                        <img src="{{cart_item.product.image.url}}" class="img-fluid">
+                        <div class="caption flex-column">
+                            <h4>{{cart_item.product.name}}</h4>
+                            <p>Crust: Original Thin Crust</p>
+                            <p>Size: 22 cm / standard</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="price">
+                        <p>₹{{cart_item.product.price}}</p>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a href="{% url 'cart_remove_minus' cart_item.product_id%}">
+                    <button class="minus"><i class="fa fa-angle-left"></i></button>
+                    </a>
+                    <!-- Please only enter number in counter-num that is greater than 0-->
+                    <span class="counter-num">{{cart_item.quantity}}</span>
+                    <a href="{% url 'add_cart' cart_item.product_id %}">
+                    <button class="plus"><i class="fa fa-angle-right"></i></button>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <div class="total">
+                        <p>₹{{cart_item.sub_total}}</p>
+                    </div>
+                </div>
+                <div class="col-md-1 text-center">
+                    <a href="{% url 'cart_remove_product' cart_item.product_id%}"><img src="{% static 'product/img/remove-icon.png'%}" class="img-fluid"></a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row top_margin_50">
+                <div class="col-md-6">
+                    
+                </div>
+
+                <div class="col-md-3 text-right">
+                    <a href="{% url 'home' %}"><button type="button" class="btn btn-outline-primary-grey grey">Continue Shopping</button></a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'checkout' %}">
+                    <button type="button" class="btn btn-outline-primary-red">proceed to checkout</button>
+                </a>
+                </div>
+            </div>
+
+            <div class="row top_margin_110">
+                <div class="col-md-6">
+                   
+                </div>
+                <div class="col-md-6">
+                    <div class="shipping_box">
+                       <h4>cart totals</h4>
+                        <div class="price_amount">
+                            <span>cart total:</span>
+                            <p>₹{{total}}</p>
+                        </div>
+                        <div class="shipping_price">
+                            <span>shipping & handling:</span>
+                            <p>Free shipping</p>
+                        </div>
+
+                       <div class="order_total">
+                           <span>order total:</span>
+                           <p>₹{{total}}</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+        <div class="text-center top_margin_110">
+            <h2 class="shop_big_title">Your Shopping Cart is Empty</h2>
+            <br />
+            <p>It looks like you haven't added any pizzas to your cart yet.</p>
+            <br />
+            <a href="{% url 'home' %}" class="btn btn-outline-primary-red">Continue Shopping</a>
+        </div>
+    {% endif %}
+        </section>
+    </div>
+{% endblock %}

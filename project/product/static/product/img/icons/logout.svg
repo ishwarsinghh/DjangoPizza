@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icons/24px/checkout</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15,2 L15,4 L4,4 L4,20 L15,20 L15,22 L2,22 L2,2 L15,2 Z M16.2139838,6.30000019 L21.9200001,12.007107 L16.2139838,17.7142138 L14.8000002,16.3000002 L18.0296185,13 L8,13 L8,11 L18.0156375,11 L14.8000002,7.71421375 L16.2139838,6.30000019 Z" id="path-1"></path>
+    </defs>
+    <g id="1.-Intro" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03" transform="translate(-593.000000, -259.000000)">
+            <g id="Icons/24px/checkout" transform="translate(591.000000, 257.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Combined-Shape" fill="#525A65" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <path d="M0,0 C4.24292062,0 8.24784447,0 12.0147715,0 C15.7816986,0 19.7767748,0 24,0 L24,24 L0,24 L0,0 Z" id="Path" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>

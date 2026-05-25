@@ -1,0 +1,165 @@
+{% extends 'product/base.html' %} {% load static %} {% block content %}
+<div class="container">
+  <div class="pizza_breadcrumb">
+    <a href="index.html"><i class="fa fa-home"></i> Home</a> /
+    <span>Checkout</span>
+  </div>
+
+  <section class="shop_title">
+    <div class="piz_title">
+      <div class="small_title"><h3>best choice!</h3></div>
+
+      <div class="big_title">
+        <h1 class="shop_big_title">run checkout</h1>
+        <img src="{% static 'product/img/title_icon.png' %}" />
+      </div>
+    </div>
+    <div class="title_devider">
+      <p class="line"></p>
+    </div>
+    <div class="under_title">
+      <p>
+        Enter details and enjoy the service!!!
+      </p>
+    </div>
+  </section>
+
+  <section class="checkout">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="run_checkout_box">
+          <h3 class="no_border">billing details</h3>
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div class="country"></div>
+            <div class="name">
+              <input
+                type="text"
+                class="custom-control"
+                id="usr1"
+                name="first_name"
+                placeholder="First Name" required
+              />
+              <input
+                type="text"
+                class="custom-control"
+                id="usr2"
+                name="last_name"
+                placeholder="Last Name"
+              />
+            </div>
+            <div class="email_phone">
+              <input
+                type="text"
+                class="custom-control"
+                name="phone"
+                id="usr4"
+                placeholder="Phone" required
+              />
+            </div>
+            <div class="company_name"></div>
+            <div class="company_address">
+              <input
+                type="text"
+                class="custom-control"
+                name="address"
+                id="usr5"
+                placeholder="Street address" required
+              />
+            </div>
+
+            <div class="appartment_town">
+              <input
+                type="text"
+                class="custom-control"
+                name="city"
+                id="usr6"
+                placeholder="Town / City" required
+              />
+              <input
+                type="text"
+                class="custom-control"
+                name="postal_code"
+                id="usr7"
+                placeholder="PostalCode / Zip" required
+              />
+            </div>
+            <div class="state_postal"></div>
+          
+        </div>
+     
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customCheck"
+              name="example1"
+            />
+            <label class="custom-control-label" for="customCheck"
+              >create an account ?</label
+            >
+          </div>
+        
+      </div>
+      <div class="col-lg-6">
+        <div class="run_checkout_box">
+          <h3 class="u_order">your order</h3>
+          {% for cart_item in cart_items %}
+          <div class="row flex-tab">
+            <div class="col-md-7">
+              <div class="run_cart_item">
+                <img src="{{cart_item.product.image.url}}" class="img-fluid" />
+                <div class="caption flex-column">
+                  <h5>{{cart_item.product.name}}</h5>
+                  <p>Crust: Original Thin Crust</p>
+                  <p>Size: 22 cm / standard</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 text-center">
+              <!-- Please only enter number in counter-num that is greater than 0-->
+              <span class="counter-num center">{{cart_item.quantity}} </span>
+            </div>
+            <div class="col-md-2">
+              <div class="total_checkout">
+                <p>${{cart_item.product.price}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="shipping_box top_margin_50">
+          <h4>order total</h4>
+          <div class="price_amount">
+            <span>cart subtotal:</span>
+            <p>Rs.{{total}}</p>
+          </div>
+          <div class="shipping_price">
+            <span>shipping & hadling:</span>
+            <p>Free shipping</p>
+          </div>
+
+          <div class="order_total">
+            <span>order total:</span>
+            <p>Rs.{{total}}</p>
+          </div>
+        </div>
+        <h3 class="payment_method">payment method</h3>
+        <div class="method_payment">
+          <select name="Payment" class="custom-select">
+            <option selected value="1">Cash On Delivery</option>
+            <option value="2">Credit Card</option>
+          </select>
+          <label
+            ><span>*</span>Terms and conditions applied</label
+          >
+        </div>
+        <button type="submit" class="btn btn-outline-primary">
+          place order
+        </button>
+      </div>
+    </form>
+    </div>
+  </section>
+</div>
+{% endblock %}
