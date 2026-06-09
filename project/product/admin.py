@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import   Cart, CartItem, Category, Order, OrderItem, Product
+from .models import   Cart, CartItem, Category, Order, OrderItem, Product,FAQ
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
@@ -19,7 +19,7 @@ admin.site.register(Product,ProductAdmin)
 
 admin.site.register(Cart)  
 admin.site.register(CartItem)
-
+admin.site.register(FAQ)
 
 class OrderItemAdmin(admin.TabularInline):
     model = OrderItem

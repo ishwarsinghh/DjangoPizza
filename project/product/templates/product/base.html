@@ -4,27 +4,14 @@
   <head>
     <title>Shop right sidebar with buttons filter</title>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="icon"
-      href="{% static 'product/img/favicon.png' %}"
-      type="image/x-icon"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Oswald:400,700|PT+Serif:400,700|Roboto:100,300,400,500&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" href="{% static 'product/img/favicon.png' %}" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|PT+Serif:400,700|Roboto:100,300,400,500&display=swap" rel="stylesheet" />
     <link href="{% static 'product/css/bootstrap.css' %}" rel="stylesheet" />
     <link href="{% static 'product/css/superslides.css' %}" rel="stylesheet" />
     <link href="{% static 'product/css/font-awesome.css' %}" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'product/css/owl.carousel.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'product/css/owl.theme.default.min.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'product/css/owl.theme.default.min.css' %}" />
     <link href="{% static 'product/css/navigation.css' %}" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'product/css/reset.css' %}" />
     <link rel="stylesheet" href="{% static 'product/css/style.css' %}" />
@@ -34,73 +21,54 @@
     <div id="main">
       <div class="header-v3">
         <div class="container">
-          <div class="menu-top desktop-top">
+          
+          <div class="menu-top desktop-top" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee;">
+            
             <div class="left_block">
-              <div class="phone_email">
-                P: +91 (1234567890)  / E: info@gmail.com
+              <div class="phone_email" style="font-weight: 500; color: #555;">
+                P: +91 (1234567890) &nbsp;|&nbsp; E: info@gmail.com
               </div>
             </div>
-            <div class="right_block">
+            
+            <div class="right_block" style="display: flex; align-items: center; gap: 25px;">
+              
               <div class="my_search">
-                <form
-                  class="search clearfix"
-                  action="{% url 'search' %}"
-                  ,
-                  method="GET"
-                >
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      name="title"
-                      class="form-control"
-                      placeholder=" Search...."
-                      style="width: 600px"
-                    />
+                <form class="search clearfix" action="{% url 'search' %}" method="GET" style="margin: 0;">
+                  <div class="input-group" style="display: flex; align-items: center;">
+                    <input type="text" name="title" class="form-control" placeholder="Search for pizza..." style="width: 350px; height: 40px; border-radius: 5px 0 0 5px; box-shadow: none;" />
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-outline-primary-gry">
+                      <button type="submit" class="btn btn-outline-primary-gry" style="height: 40px; border-radius: 0 5px 5px 0; display: flex; align-items: center;">
                         <i class="fa fa-search"></i>
                       </button>
                     </div>
                   </div>
                 </form>
               </div>
+              
               <div class="my_cart_wrapper">
-                <div class="my_cart_button">
-                  <a href="#">
-                    <img
-                      class="vert_line"
-                      src="{% static 'product/img/vert-line.png' %}"
-                    />
-                    <img
-                      class="pizza_cart"
-                      src="{% static 'product/img/cart-btn.png' %}" width="20px" height="15px"
-                    />
-                    <span class="cart_circle">{{counter}}</span>
+                <div class="my_cart_button" style="display: flex; align-items: center; gap: 10px;">
+                  <a href="#" style="position: relative; display: flex; align-items: center; text-decoration: none;">
+                    <img class="vert_line" style="margin-right: 15px; height: 30px;" src="{% static 'product/img/vert-line.png' %}" />
+                    <img class="pizza_cart" src="{% static 'product/img/cart-btn.png' %}" width="20px" height="15px" />
+                    <span class="cart_circle" style="position: absolute; top: -8px; right: -10px; background-color: #dc3545; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: bold; border: 2px solid white;">{{counter}}</span>
                   </a>
-                  <div class="cart_sum">Rs.{{total}}</div>
+                  
+                  {% if counter and counter != '0' and counter != 0 %}
+                    <div class="cart_sum" style="font-weight: bold; color: #333;">Rs.{{total}}</div>
+                  {% endif %}
+                  
                 </div>
+                
                 <div class="my_cart_popup">
                   {% for cart_item in cart_items %}
                   <div class="my_cart_item clearfix">
-                    <a href="#" class="my_cart_item_close"
-                      ><i class="fa fa-times"></i
-                    ></a>
+                    <a href="#" class="my_cart_item_close"><i class="fa fa-times"></i></a>
                     <figure>
-                      <img
-                        src="{{cart_item.product.image.url}}"
-                        width="60px"
-                        height="60px"
-                        alt=""
-                        class="img-fluid"
-                      />
+                      <img src="{{cart_item.product.image.url}}" width="60px" height="60px" alt="" class="img-fluid" />
                     </figure>
                     <div class="caption">
-                      <div class="txt1">
-                        Rs.{{cart_item.product.price}} x {{cart_item.quantity}}
-                      </div>
-                      <div class="txt2">
-                        <a href="#">{{cart_item.product.name}}</a>
-                      </div>
+                      <div class="txt1">Rs.{{cart_item.product.price}} x {{cart_item.quantity}}</div>
+                      <div class="txt2"><a href="#">{{cart_item.product.name}}</a></div>
                     </div>
                   </div>
                   {% endfor %}
@@ -109,37 +77,24 @@
                     <div class="right">Rs.{{total}}</div>
                   </div>
                   <div class="my_cart_buttons">
-                    <a href="{% url 'cart_detail' %}" class="my_cart_button2"
-                      >View Cart</a
-                    >
-                    <a href="{% url 'checkout' %}" class="my_cart_button2"
-                      >Check Out</a
-                    >
+                    <a href="{% url 'cart_detail' %}" class="my_cart_button2">View Cart</a>
+                    <a href="{% url 'checkout' %}" class="my_cart_button2">Check Out</a>
                   </div>
                 </div>
               </div>
-              <div class="top_social">
-                <img
-                  class="vert_line"
-                  src="{% static 'product/img/vert-line.png'%}"
-                />
-                <ul>
-                  <li>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                  </li>
+              
+              <div class="top_social" style="display: flex; align-items: center;">
+                <img class="vert_line" style="margin-right: 15px; height: 30px;" src="{% static 'product/img/vert-line.png'%}" />
+                <ul style="display: flex; gap: 12px; list-style: none; padding: 0; margin: 0;">
+                  <li><a href="#"><i class="fab fa-facebook-f" style="color: #333;"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter" style="color: #333;"></i></a></li>
+                  <li><a href="#"><i class="fab fa-linkedin-in" style="color: #333;"></i></a></li>
+                  <li><a href="#"><i class="fab fa-pinterest-p" style="color: #333;"></i></a></li>
                 </ul>
               </div>
             </div>
           </div>
+
           <div class="header-inner_1 clearfix">
             <header class="header_bg">
               <div class="logo">
@@ -153,138 +108,85 @@
               <div class="navigation-header">
                 <div class="navigation-button-toggler">
                   <div class="mobile-menu-button">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span><span></span><span></span><span></span>
                   </div>
                 </div>
               </div>
               <div class="navigation-body">
                 <div class="navigation-body-header">
                   <div class="site-logo">
-                    <a href="index.html">
-                      <img src="{% static 'product/img/logo.png' %}" />
-                    </a>
+                    <a href="index.html"><img src="{% static 'product/img/logo.png' %}" /></a>
                   </div>
                   <span class="navigation-body-close-button">&#10005;</span>
                 </div>
+                
                 <ul class="navigation-menu">
-                  <li class="navigation-item">
-                    <a class="navigation-link" href="{% url 'home' %}">Home</a>
-                  </li>
+                  <li class="navigation-item"><a class="navigation-link" href="{% url 'home' %}">Home</a></li>
                   {% for category in categories %}
+                  <li class="navigation-item"><a class="navigation-link" href="{% url 'products_by_category' category.slug %}">{{category.name}}</a></li>
+                  {% endfor %} 
+                  
+                  {% if request.user.is_authenticated %}
                   <li class="navigation-item">
-                    <a
-                      class="navigation-link"
-                      href="{% url 'products_by_category' category.slug %}"
-                      >{{category.name}}</a
-                    >
-                  </li>
-                  {% endfor %} {% if request.user.is_authenticated %}
-                  <li class="navigation-item">
-                    <a class="navigation-link" href="#"
-                      >Welcome, {{request.user.first_name}}</a
-                    >
-
+                    <a class="navigation-link" href="#">Welcome, {{request.user.first_name}}</a>
                     <ul class="navigation-dropdown">
-                      <li class="navigation-dropdown-item">
-                        <a
-                          class="navigation-dropdown-link"
-                          href="{% url 'my_dashboard'  %}"
-                          >My Dashboard</a
-                        >
-                      </li>
-                      <li class="navigation-dropdown-item">
-                        <a
-                          class="navigation-dropdown-link"
-                          href="{% url 'signout' %}"
-                          >Log Out</a
-                        >
-                      </li>
+                      <li class="navigation-dropdown-item"><a class="navigation-dropdown-link" href="{% url 'my_dashboard' %}">My Dashboard</a></li>
+                      <li class="navigation-dropdown-item"><a class="navigation-dropdown-link" href="{% url 'signout' %}">Log Out</a></li>
                     </ul>
                   </li>
-
                   {% else %}
-                  <li class="navigation-item">
-                    <a class="navigation-link" href="{% url 'signup' %}"
-                      >Register</a
-                    >
-                  </li>
-                  <li class="navigation-item">
-                    <a class="navigation-link" href="{% url 'signin' %}"
-                      >Login</a
-                    >
-                  </li>
+                  <li class="navigation-item"><a class="navigation-link" href="{% url 'signup' %}">Register</a></li>
+                  <li class="navigation-item"><a class="navigation-link" href="{% url 'signin' %}">Login</a></li>
                   {% endif %}
-
-                  <li class="navigation-item">
-                    <a class="navigation-link" href="contact.html"
-                      >Contact us</a
-                    >
-                  </li>
+                  <li class="navigation-item"><a class="navigation-link" href="contact.html">Contact us</a></li>
                 </ul>
+                
                 <div class="navigation-body-section">
                   <div class="inside-menu-wrapper">
                     <div class="menu-top">
                       <div class="left_block">
-                        <div class="phone_email">
-                          P: +91 (1234567890) / E: info@gmail.com
-                        </div>
+                        <div class="phone_email">P: +91 (1234567890) / E: info@gmail.com</div>
                       </div>
-                      <div class="right_block">
+                      
+                      <div class="right_block" style="display: flex; align-items: center; gap: 20px;">
                         <div class="my_account">
-                          <a href="{% url 'my_dashboard'%}"
-                            ><img src="{% static 'product/img/logo.png' %}"
-                          /></a>
+                          <a href="{% url 'my_dashboard'%}"><img src="{% static 'product/img/logo.png' %}" /></a>
                         </div>
+                        
                         <div class="my_cart_wrapper">
-                          <div class="my_cart_button">
-                            <a href="shopping-cart.html">
-                              <img
-                                class="vert_line"
-                                src="{% static 'product/img/vert-line.png' %}"
-                              />
-                              <img
-                                class="pizza_cart"
-                                src="{% static 'product/img/icons/cart.svg' %}"
-                              />
-
-                              <span class="cart_circle">3</span>
+                          <div class="my_cart_button" style="display: flex; align-items: center; gap: 10px;">
+                            <a href="shopping-cart.html" style="position: relative; display: flex; align-items: center; text-decoration: none;">
+                              <img class="vert_line" style="margin-right: 15px; height: 30px;" src="{% static 'product/img/vert-line.png' %}" />
+                              <img class="pizza_cart" src="{% static 'product/img/icons/cart.svg' %}" />
+                              <span class="cart_circle" style="position: absolute; top: -8px; right: -10px; background-color: #dc3545; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: bold; border: 2px solid white;">{{counter}}</span>
                             </a>
-                            <div class="cart_sum">Rs.00</div>
+                            
+                            {% if counter and counter != '0' and counter != 0 %}
+                              <div class="cart_sum" style="font-weight: bold; color: #333;">Rs.{{total}}</div>
+                            {% endif %}
                           </div>
                         </div>
-                        <div class="top_social">
-                          <img
-                            class="vert_line"
-                            src="{% static 'product/img/vert-line.png'%}"
-                          />
-                          <ul>
-                            <li>
-                              <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            </li>
-                            <li>
-                              <a href="#"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                            <li>
-                              <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </li>
+                        
+                        <div class="top_social" style="display: flex; align-items: center;">
+                          <img class="vert_line" style="margin-right: 15px; height: 30px;" src="{% static 'product/img/vert-line.png'%}" />
+                          <ul style="display: flex; gap: 10px; list-style: none; padding: 0; margin: 0;">
+                            <li><a href="#"><i class="fab fa-facebook-f" style="color: #333;"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter" style="color: #333;"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin-in" style="color: #333;"></i></a></li>
+                            <li><a href="#"><i class="fab fa-pinterest-p" style="color: #333;"></i></a></li>
                           </ul>
                         </div>
+                        
                       </div>
                     </div>
                   </div>
                 </div>
+                
               </div>
             </nav>
           </div>
         </div>
       </div>
-
       {% block content%} {% endblock %}
 
       <!-------------------- FOOTER  -------------------------------------->
@@ -394,6 +296,128 @@
         </div>
       </div>
     </div>
+    <button id="chatbot-toggle-btn" style="position: fixed; bottom: 30px; right: 30px; border-radius: 50%; width: 65px; height: 65px; background-color: #ffc107; border: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); cursor: pointer; z-index: 1000; display: flex; justify-content: center; align-items: center;">
+    <span style="font-size: 30px;">🍕</span>
+</button>
+
+<div id="chatbot-window" style="display: none; position: fixed; bottom: 110px; right: 30px; width: 350px; height: 500px; background-color: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 1000; flex-direction: column; overflow: hidden; font-family: sans-serif;">
+    
+    <div style="background-color: #dc3545; color: white; padding: 15px; text-align: center; font-weight: bold; border-bottom: 2px solid #c82333;">
+        Pizza Assistant AI
+    </div>
+    
+    <div id="chatbot-messages" style="flex-grow: 1; padding: 15px; overflow-y: auto; background-color: #f8f9fa; display: flex; flex-direction: column; gap: 10px;">
+        <div style="background-color: #e9ecef; color: #333; padding: 10px 15px; border-radius: 15px; max-width: 80%; align-self: flex-start;">
+            Hello! I'm your virtual assistant. How can I help you with your order today?
+        </div>
+    </div>
+    
+    <div style="padding: 15px; border-top: 1px solid #dee2e6; background-color: white; display: flex; gap: 10px;">
+        {% csrf_token %}
+        <input type="text" id="chatbot-input" style="color: #000000; background-color: #ffffff; font-size: 16px; padding: 10px;" placeholder="Type a message...">
+
+        <button id="chatbot-send-btn" style="background-color: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold;">Send</button>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const toggleBtn = document.getElementById('chatbot-toggle-btn');
+        const chatWindow = document.getElementById('chatbot-window');
+        const sendBtn = document.getElementById('chatbot-send-btn');
+        const chatInput = document.getElementById('chatbot-input');
+        const messagesArea = document.getElementById('chatbot-messages');
+
+        // 1. Toggle Chat Window
+        toggleBtn.addEventListener('click', () => {
+            if (chatWindow.style.display === 'none') {
+                chatWindow.style.display = 'flex';
+                chatInput.focus();
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        });
+
+        // 2. Allow sending message with 'Enter' key
+        chatInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        sendBtn.addEventListener('click', sendMessage);
+
+        // 3. Core Send Logic
+        async function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // Add user message to UI
+            appendMessage(text, 'user');
+            chatInput.value = '';
+
+            // Show typing indicator
+            const typingId = appendMessage('...', 'bot', true);
+
+            // Grab the security token
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            try {
+                // Send data to Django! (We will build this URL next)
+                const response = await fetch('/api/chat/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ message: text })
+                });
+
+                const data = await response.json();
+                
+                // Remove typing indicator and show real response
+                document.getElementById(typingId).remove();
+                appendMessage(data.reply, 'bot');
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById(typingId).remove();
+                appendMessage('Sorry, I am having trouble connecting to the kitchen.', 'bot');
+            }
+        }
+
+        // 4. Helper function to draw messages on the screen
+        function appendMessage(text, sender, isTyping = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.style.padding = '10px 15px';
+            msgDiv.style.borderRadius = '15px';
+            msgDiv.style.maxWidth = '80%';
+            msgDiv.style.wordWrap = 'break-word';
+
+            if (sender === 'user') {
+                msgDiv.style.backgroundColor = '#007bff';
+                msgDiv.style.color = 'white';
+                msgDiv.style.alignSelf = 'flex-end';
+            } else {
+                msgDiv.style.backgroundColor = '#e9ecef';
+                msgDiv.style.color = '#333';
+                msgDiv.style.alignSelf = 'flex-start';
+            }
+
+            msgDiv.innerText = text;
+            
+            // Assign a unique ID if it's the typing indicator so we can delete it later
+            const id = 'msg-' + Date.now();
+            if (isTyping) msgDiv.id = id;
+
+            messagesArea.appendChild(msgDiv);
+            
+            // Auto-scroll to bottom
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            
+            return id;
+        }
+    });
+</script>
   </body>
   <script src="{% static 'product/js/jquery.min.js' %}"></script>
   <script src="{% static 'product/js/navigation.js' %}"></script>

@@ -97,3 +97,9 @@ class OrderItem(models.Model):
     def __str__(self):
         return self.product.name
         
+class FAQ(models.Model):
+    keywords = models.CharField(max_length=255, help_text="Words user might type, e.g., 'vegan, dairy, allergy'")
+    answer = models.TextField(help_text="The exact answer the AI should give.")
+
+    def __str__(self):
+        return self.keywords

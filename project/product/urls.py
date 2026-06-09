@@ -18,9 +18,7 @@ urlpatterns = [
     path('search/', views.search, name='search'),   
     path('my_dashboard/', views.orderHistory, name='my_dashboard'),  
     path('order/<int:order_id>', views.viewOrder, name='order_detail'),   
-    path('order_history/<int:order_id>', views.status_complete, name='status_complete'),      
-    
-
-    
+    path('order_history/<int:order_id>', views.status_complete, name='status_complete'),  
+    path('api/chat/', views.pizza_chatbot_backend, name='pizza_chatbot'),    
     
 ]       
